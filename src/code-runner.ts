@@ -4,7 +4,7 @@ import { SRC_FILE, BIN_FILE } from './languages'
 
 import type { Language } from './languages'
 
-function mountCommand(rawCommand: string, srcFile: string, binFile = '') {
+function mountCommand(rawCommand: string, srcFile: string, binFile = srcFile) {
   const strCommand = Array.isArray(rawCommand)
     ? rawCommand.join(' ')
     : rawCommand
@@ -27,6 +27,7 @@ async function runSourceCode(key: string, code: string, lang: Language) {
     const [output, error] = await exec(compilationCommand)
 
     if (error) {
+      console.log('Failed compiling:')
       console.error(error)
       return output || error.message
     }
@@ -36,6 +37,7 @@ async function runSourceCode(key: string, code: string, lang: Language) {
   const [output, error] = await exec(executionCommand)
 
   if (error) {
+    console.log('Failed executing:')
     console.error(error)
     return output || error.message
   }

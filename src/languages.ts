@@ -12,14 +12,20 @@ const BIN_FILE = '{{bin_file}}'
 
 const supportedLanguages: Language[] = [
   {
+    name: 'c',
+    srcFileExt: '.c',
+    compilation: `gcc "${SRC_FILE}" -o "${BIN_FILE}"`,
+    execution: `"${BIN_FILE}"`,
+  },
+  {
     name: 'js',
     srcFileExt: '.js',
-    execution: `node ${SRC_FILE}`,
+    execution: `node "${SRC_FILE}"`,
   },
   {
     name: 'php',
     srcFileExt: '.php',
-    execution: `php ${SRC_FILE}`,
+    execution: `php "${SRC_FILE}"`,
   },
 ]
 
