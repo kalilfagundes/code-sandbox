@@ -1,6 +1,6 @@
 import 'dotenv/config'
-import app from './app'
+import server from './server'
 
-app.listen(process.env.SERVER_PORT, () => {
+server.listen(process.env.SERVER_PORT, () => {
   console.log(`Listening at http://localhost:${process.env.SERVER_PORT}`)
 })

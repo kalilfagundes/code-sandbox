@@ -8,11 +8,11 @@ export interface RequestBody {
   code: string
 }
 
-const app = express()
+const server = express()
 
-app.use(express.json())
+server.use(express.json())
 
-app.post('/', async (request, response) => {
+server.post('/', async (request, response) => {
   const { key, lang, code } = request.body as RequestBody
   const language = languages.find(({ name }) => name === lang)
 
@@ -29,4 +29,4 @@ app.post('/', async (request, response) => {
     .json({ output })
 })
 
-export default app
+export default server
