@@ -7,24 +7,26 @@ interface Language {
   execution: string | string[]
 }
 
-const TARGET_FILE = '{{target-file}}'
+const SRC_FILE = '{{src_file}}'
+const BIN_FILE = '{{bin_file}}'
 
 const supportedLanguages: Language[] = [
   {
     name: 'js',
     srcFileExt: 'js',
-    execution: ['node', TARGET_FILE],
+    execution: ['node', SRC_FILE],
   },
   {
     name: 'php',
     srcFileExt: 'php',
-    execution: ['php', TARGET_FILE],
+    execution: ['php', SRC_FILE],
   },
 ]
 
 export {
   supportedLanguages as languages,
-  TARGET_FILE,
+  SRC_FILE,
+  BIN_FILE,
 }
 
 export type {

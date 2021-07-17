@@ -1,20 +1,22 @@
 import path from 'path'
 import mkdir from 'mkdirp'
 import { exec, fs } from './utils'
-import { TARGET_FILE } from './languages'
+import { SRC_FILE, BIN_FILE } from './languages'
 
 import type { Language } from './languages'
 
-function mountCommand(rawCommand: string | string[], targetFile: string) {
+function mountCommand(rawCommand: string | string[], srcFile: string, binFile = '') {
   const strCommand = Array.isArray(rawCommand)
     ? rawCommand.join(' ')
     : rawCommand
 
-  return strCommand.replace(TARGET_FILE, targetFile)
+  return strCommand
+    .replace(SRC_FILE, srcFile)
+    .replace(BIN_FILE, binFile)
 }
 
 async function runSourceCode(key: string, code: string, lang: Language) {
-  const baseFileName = `${process.env.SANDBOX_DIR}/${lang.name}_${key}`
+  const baseFileName = `${process.env.SANDBOX_DIR}/${key}/${lang.name}`
   const srcFileName = `${baseFileName}.${lang.srcFileExt}`
   const binFileName = lang.compilation && lang.binFileExt
     ? `${baseFileName}.${lang.binFileExt}`
@@ -24,7 +26,7 @@ async function runSourceCode(key: string, code: string, lang: Language) {
   await fs.writeFile(srcFileName, code)
 
   if (lang.compilation) {
-    const compilationCommand = mountCommand(lang.compilation, `${baseFileName}.${lang.srcFileExt}`)
+    const compilationCommand = mountCommand(lang.compilation, srcFileName, binFileName)
     const [output, error] = await exec(compilationCommand)
 
     if (error) {
