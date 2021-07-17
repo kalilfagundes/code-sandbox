@@ -1,6 +1,7 @@
+import path from 'path'
 import mkdir from 'mkdirp'
 import { exec, fs } from './utils'
-import { SRC_FILE, BIN_FILE } from './languages'
+import { SRC_DIR, SRC_FILE, BIN_DIR, BIN_FILE } from './languages'
 
 import type { Language } from './languages'
 
@@ -10,7 +11,9 @@ function mountCommand(rawCommand: string, srcFile: string, binFile = srcFile) {
     : rawCommand
 
   return strCommand
+    .replace(SRC_DIR, path.dirname(srcFile))
     .replace(SRC_FILE, srcFile)
+    .replace(BIN_DIR, path.dirname(srcFile))
     .replace(BIN_FILE, binFile)
 }
 
