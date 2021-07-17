@@ -3,6 +3,8 @@
     "target": "es2018",
     "module": "commonjs",
     "outDir": "build/",
+    // "types": [],
+    // "lib": [],
     "noEmit": false,
     "strict": true,
     "moduleResolution": "node",
@@ -10,13 +12,7 @@
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "removeComments": false,
-    "skipLibCheck": true,
-    // "types": [],
-    // "lib": [],
-    "baseUrl": "./",
-    "paths": {
-      "~": ["src/"]
-    }
+    "skipLibCheck": true
   },
   "include": [
     "src/"
