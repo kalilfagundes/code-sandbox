@@ -1,22 +1,28 @@
 import express from 'express'
-import languages from './lang'
+import { languages } from './languages'
+import runSourceCode from './code-runner'
+
+export interface RequestBody {
+  key: string
+  lang: string
+  code: string
+}
 
 const app = express()
 
 app.use(express.json())
 
 app.post('/', async (request, response) => {
-  const { code, id, lang } = request.body
-  const inputFile = `${process.env.SANDBOX_DIR}/${lang}_${id}`
-  const environment = languages.find((rt) => rt.name === lang)
+  const { key, lang, code } = request.body as RequestBody
+  const language = languages.find(({ name }) => name === lang)
 
-  if (!environment) {
+  if (!language) {
     return response
       .status(400)
       .json({ message: `Language '${lang}' not supported.` })
   }
 
-  const output = await environment.run(inputFile, code)
+  const output = await runSourceCode(key, code, language)
 
   return response
     .status(200)
