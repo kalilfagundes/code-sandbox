@@ -1,14 +1,19 @@
 FROM alpine:latest
 
+ENV SERVER_PORT="4444"
+ENV SANDBOX_DIR="/tmp/sandbox"
+
 ENV FPC_VERSION="3.2.2"
 ENV FPC_ARCH="x86_64-linux"
 
 RUN apk add --no-cache bash bash-doc bash-completion
 RUN apk add --no-cache build-base
+RUN apk add --no-cache bash
+RUN apk add --no-cache openjdk11
+RUN apk add --no-cache php7
 RUN apk add --no-cache nodejs
 RUN apk add --no-cache npm
-RUN apk add --no-cache php7
-RUN apk add --no-cache openjdk11
+RUN npm install -g pm2
 
 RUN apk add --no-cache binutils && \
     cd /tmp && \
@@ -30,6 +35,12 @@ RUN apk add --no-cache binutils && \
         -exec rm -r {} \; && \
     rm -r "/lib64" "/tmp/"*
 
-WORKDIR /source
+WORKDIR /usr/sandbox
 
-CMD ["java", "-version"]
+COPY ./ ./
+RUN npm install
+
+RUN rm build/ -rf
+RUN npm run build
+
+CMD ["pm2-runtime", "start", "build/"]
