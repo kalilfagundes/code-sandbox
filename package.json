@@ -9,13 +9,11 @@
     "Lia Alflen",
     "Rafael Zezilia L. S."
   ],
-  "main": "build/index.js",
   "scripts": {
-    "dev": "nodemon --watch src/ --exec 'ts-node src/index.ts' -e ts",
-    "build:watch": "npm run build -- --watch",
+    "start": "node build/",
     "build": "tsc --project .",
-    "watch": "nodemon .",
-    "start": "node ."
+    "dev": "npm run build -- --watch --preserveWatchOutput",
+    "dev:local": "nodemon --watch src/ --exec 'ts-node src/index.ts' -e ts"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
