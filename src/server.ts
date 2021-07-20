@@ -13,6 +13,18 @@ const server = express()
 
 server.use(express.json())
 
+server.get('*', (_request, response) => {
+  response
+    .status(200)
+    .send(`
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <h1>FarmaAlg Sandbox</h1>
+        <p>Supported languages:</p>
+        <ul>${languages.map(({ name }) => `<li>${name.toUpperCase()}</li>`).join('')}</ul>
+      </div>
+    `)
+})
+
 server.post('/', async (request, response) => {
   const { key, lang, code } = request.body as RequestBody
   const language = languages.find(({ name }) => name === lang)
