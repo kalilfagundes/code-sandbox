@@ -1,5 +1,6 @@
 import 'express-async-errors'
 import express from 'express'
+import cors from 'cors'
 import { languages } from './languages'
 import runSourceCode from './code-runner'
 
@@ -11,6 +12,7 @@ export interface RequestBody {
 
 const server = express()
 
+server.use(cors())
 server.use(express.json())
 
 server.get('*', (_request, response) => {
