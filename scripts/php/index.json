@@ -1,0 +1,9 @@
+{
+  "id": "php",
+  "name": "PHP",
+  "version": "7",
+  "srcFileExt": "php",
+  "binFileExt": "php",
+  "compilationScript": null,
+  "executionScript": "execute.sh"
+}
