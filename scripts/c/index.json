@@ -1,0 +1,9 @@
+{
+  "id": "c",
+  "name": "C",
+  "version": null,
+  "srcFileExt": "c",
+  "binFileExt": "exe",
+  "compilationScript": "compile.sh",
+  "executionScript": "execute.sh"
+}

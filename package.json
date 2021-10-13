@@ -1,6 +1,6 @@
 {
   "name": "@farma-alg/sandbox",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "license": "MIT",
   "authors": [
@@ -10,10 +10,13 @@
     "Rafael Zezilia L. S."
   ],
   "scripts": {
-    "start": "node build/",
+    "dev": "nodemon src/index.ts",
     "build": "tsc --project .",
-    "dev": "npm run build -- --watch --preserveWatchOutput",
-    "dev:local": "nodemon --watch src/ --exec 'ts-node src/index.ts' -e ts"
+    "start": "node build/index.js",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down",
+    "docker:start": "docker-compose up -f docker-compose.yml -f docker-compose.prod.yml -d"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -30,7 +33,7 @@
     "eslint": "^7.32.0",
     "eslint-config-lacussoft": "^2.0.3",
     "nodemon": "^2.0.13",
-    "ts-node": "^10.2.1",
+    "ts-node": "^10.3.0",
     "typescript": "^4.4.3"
   }
 }

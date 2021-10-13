@@ -12,7 +12,18 @@
     "sourceType": "module"
   },
   "rules": {
-    "linebreak-style": ["error", "unix"],
+    "@typescript-eslint/no-explicit-any": "off",
+    "camelcase": ["error", {
+      "allow": [
+        "src_ext",
+        "bin_ext",
+        "comp_script",
+        "exec_script",
+        "comp_time",
+        "exec_time",
+        "exit_code"
+      ]
+    }],
     "no-console": "off",
     "no-magic-numbers": "off"
   }
