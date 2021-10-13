@@ -1,6 +1,6 @@
 {
   "name": "@farma-alg/sandbox",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "license": "MIT",
   "authors": [
@@ -30,7 +30,7 @@
     "eslint": "^7.32.0",
     "eslint-config-lacussoft": "^2.0.3",
     "nodemon": "^2.0.13",
-    "ts-node": "^10.2.1",
+    "ts-node": "^10.3.0",
     "typescript": "^4.4.3"
   }
 }
