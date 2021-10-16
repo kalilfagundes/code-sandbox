@@ -1,12 +1,7 @@
 import { Router } from 'express'
+import { RequestBody, validate } from './middlewares'
 import languages, { createRuntime } from './languages'
 
-// Expected incoming request JSON body
-export interface RequestBody {
-  lang: string
-  code: string
-  params?: string[]
-}
 
 // Configure routing object
 const router = Router()
@@ -19,16 +14,10 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Run service of code compilation and execution
-router.post('/', async (request, response) => {
+router.post('/', validate(), async (request, response) => {
   const { lang, code, params = [] } = request.body as RequestBody
-  const language = languages.get(lang)
-
-  if (!language) {
-    return response
-      .status(400)
-      .json({ error: `Language "${lang}" not supported by the service` })
-  }
-
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const language = languages.get(lang)! // validation ensures language is not null
   const runtime = createRuntime(language)
   const outputs = await runtime.execute(code, params)
 
