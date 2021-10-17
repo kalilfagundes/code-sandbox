@@ -1,11 +1,13 @@
 import path from 'path'
 import mkdir from 'mkdirp'
+import { ExecOptions } from 'child_process'
 import { Language, CodeRun } from './types'
 import { removeDir, writeFile } from '../utils/fs'
 import stopwatch from '../utils/stopwatch'
 import { exec } from '../utils/system'
 
 const SANDBOX_DIR = process.env.SANDBOX_DIR ?? '/tmp/sandbox'
+const SANDBOX_TIMEOUT = Number(process.env.SANDBOX_TIMEOUT ?? 0)
 
 /**
  * Save source code in a temporary text file
@@ -52,9 +54,10 @@ async function execute(
     params.map((text, index) => saveParams(targetDir, index + 1, text)),
   )
 
-  function getExecOptions(paramFile = '') {
+  function getExecOptions(paramFile = ''): ExecOptions {
     return {
       cwd: targetDir,
+      timeout: SANDBOX_TIMEOUT,
       env: {
         ...process.env,
         BASE_DIR: targetDir,
