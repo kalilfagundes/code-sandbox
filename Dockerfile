@@ -51,4 +51,11 @@ ENV NODE_ENV="production"
 RUN rm build/ -rf
 RUN npm run build
 
-# CMD ["pm2-runtime", "start", "build/"]
+###############################
+# To be used by Heroku deploy #
+###############################
+FROM production AS heroku
+
+ENV SERVER_PORT=${PORT}
+
+CMD ["pm2-runtime", "start", "build/index.js"]

@@ -1,0 +1,7 @@
+
+build:
+  release:
+      dockerfile: Dockerfile
+      target: heroku
+  docker:
+    web: Dockerfile
