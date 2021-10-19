@@ -56,6 +56,4 @@ RUN npm run build
 ###############################
 FROM production AS heroku
 
-ENV SERVER_PORT=${PORT}
-
-CMD ["pm2-runtime", "start", "build/index.js"]
+CMD SERVER_PORT=${PORT} pm2-runtime start build/index.js
