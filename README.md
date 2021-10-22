@@ -33,7 +33,7 @@ $ docker-compose up -f docker-compose.yml -f docker-compose.prod.yml -d
 
 Até o momento, a aplicação suporta códigos-fonte nas linguagens **C**, **JavaScrippt (node)** e **PHP (v7.4)**. Para incrementar o suporte a novas lingugens, é preciso adicionar um arquivo JSON com os metadados e arquivos *shell script* (.sh) à pasta `/scripts/`.
 
-## Formato de Requisição
+## Formato de Requisição e da Resposta
 
 Para fazer uso do serviço, é necessário enviar uma requisição HTTP do tipo `POST` para a raíz do serviço em execução (e.g. *localhost:4444*) com um JSON com a seguinte interface:
 
@@ -45,16 +45,49 @@ interface RequestBody {
 }
 ```
 
-Se a requisição não contiver a propriedade `params` ou passá-la como um *arrau* vazio, o retorno será um único objeto com o resultado da execução. Mas caso se deseje executar o programa ***n*** vezes com oarâmetros de entrada diferentes, deve-se informar o valor de `params`, onde cada espaço contém os argumentos de uma execução. Logo a resposta será um *array* de tamanho ***n*** igualmente, com o resultado de cada execução com a seguinte interface:
+A resposta tem 3 formatos possíveis, e dependerá da quantidade de parâmetros de entrada que foram fornecidos na requisição e se houve algum problema no processo de compilação.
+
+O objeto base  de resposta para cada execução é o `CodeRunOutput`:
+
+```ts
+interface CodeRunOutput {
+  exit_code: number
+  status: 'RUNTIME_ERROR' | 'SUCCESS'
+  exec_time: number
+  input: string | null
+  output: string
+}
+```
+
+Caso nçao seja fornecida a propriedade `"params"` ou esta seja passada como um *arrau* vazio, entende-se que o programa deve realizar uma única execução sem parâmetros de entrada, resultando em um único objeto `CodeRunOutout` na propriedade `"result"` de resposta. Logo, o JSON da resposta terá a seguinte tipagem:
+
+```ts
+interface CodeRun  {
+  id: string
+  status: 'COMPLETED'
+  comp_time: number | null
+  result: CodeRunOutput // <= um único objeto
+}
+```
+
+Caso o cliente forneça um *array* para `"params"` de tamanho ***n***, a propriedade `"result"` também retornará um *array* de `CodeRunOutput` de tamanho ***n***, ficando a resposta com a seguinte tipagem:
+
+```ts
+interface CodeRun  {
+  id: string
+  status: 'COMPLETED'
+  comp_time: number | null
+  result: CodeRunOutput[] // <= uma execução para cada parâmetro de entrada
+}
+```
+
+Em caso de erro de compilação e, portanto, nenhuma execução seja feita, a resposta não conterá a propriedade `"result"`, e sim, conterá a propriedade `"status": "COMPILATION_ERROR"` e a propriedade `"output"` diretamente no mesmo objeto:
 
 ```ts
 interface CodeRun {
-  source: string
-  input: string | null      // 'null' caso a execução não possua parâmetros de entrada
+  id: string
+  status: 'COMPILATION_ERROR'
+  comp_time: number
   output: string
-  comp_time: number | null  // 'null' caso a linguagem não seja compilada
-  exec_time: number | null  // 'null' caso a linguagem falhou no processo decompilação
-  exit_code: number
-  status: 'DONE' | 'COMPILATION_ERROR' | 'EXECUTION_ERROR'
 }
 ```
