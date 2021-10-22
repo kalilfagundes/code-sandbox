@@ -1,11 +1,7 @@
 import path from 'path'
 import mkdir from 'mkdirp'
-//<<<<<<< refactor/response-format
 import { Language, CodeRun, CodeRunOutput } from './types'
-//=======
 import { ExecOptions } from 'child_process'
-import { Language, CodeRun } from './types'
-//>>>>>>> main
 import { removeDir, writeFile } from '../utils/fs'
 import stopwatch from '../utils/stopwatch'
 import { exec } from '../utils/system'
