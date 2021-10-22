@@ -16,7 +16,8 @@
     "docker:build": "docker-compose build",
     "docker:up": "docker-compose up",
     "docker:down": "docker-compose down",
-    "docker:start": "docker-compose up -f docker-compose.yml -f docker-compose.prod.yml -d"
+    "docker:start": "docker-compose up -f docker-compose.yml -f docker-compose.prod.yml -d",
+    "lint": "eslint src/**/* --fix"
   },
   "dependencies": {
     "cors": "^2.8.5",
