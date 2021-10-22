@@ -2,6 +2,8 @@ FROM alpine:latest as base
 
 ENV NODE_ENV="development"
 ENV SERVER_PORT="4444"
+
+# where the incoming source code will be saved temporarily
 ENV SANDBOX_DIR="/tmp/sandbox"
 
 RUN apk add --no-cache bash bash-doc bash-completion
@@ -47,6 +49,9 @@ COPY ./ ./
 FROM base as production
 
 ENV NODE_ENV="production"
+
+# how many milliseconds maximum the server will spend in a shell execution
+ENV SANDBOX_TIMEOUT=10000
 
 RUN rm build/ -rf
 RUN npm run build
