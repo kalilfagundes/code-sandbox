@@ -1,7 +1,7 @@
 FROM alpine:latest as base
 
 ENV NODE_ENV="development"
-ENV SERVER_PORT="4444"
+ENV PORT="4444"
 
 # where the incoming source code will be saved temporarily
 ENV SANDBOX_DIR="/tmp/sandbox"
