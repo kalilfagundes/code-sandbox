@@ -1,4 +1,4 @@
-FROM alpine:latest as base
+FROM alpine:latest AS base
 
 ENV NODE_ENV="development"
 ENV PORT="4444"
@@ -42,10 +42,12 @@ COPY package.json ./
 RUN npm install
 COPY ./ ./
 
+
+
 ################################
 # To be run only in production #
 ################################
-FROM base as production
+FROM base AS production
 
 ENV NODE_ENV="production"
 
