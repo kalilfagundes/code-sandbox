@@ -2,8 +2,8 @@
   "id": "js",
   "name": "JavaScript (node)",
   "version": "14",
-  "srcFileExt": "js",
-  "binFileExt": "js",
+  "srcFileExt": "mjs",
+  "binFileExt": "mjs",
   "compilationScript": null,
   "executionScript": "execute.sh"
 }
