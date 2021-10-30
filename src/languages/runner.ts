@@ -1,11 +1,13 @@
 import path from 'path'
 import mkdir from 'mkdirp'
-import { Language, CodeRun } from './types'
+import { Language, CodeRun, CodeRunOutput } from './types'
+import { ExecOptions } from 'child_process'
 import { removeDir, writeFile } from '../utils/fs'
 import stopwatch from '../utils/stopwatch'
 import { exec } from '../utils/system'
 
 const SANDBOX_DIR = process.env.SANDBOX_DIR ?? '/tmp/sandbox'
+const SANDBOX_TIMEOUT = Number(process.env.SANDBOX_TIMEOUT ?? 0)
 
 /**
  * Save source code in a temporary text file
@@ -37,13 +39,12 @@ async function saveParams(targetDir: string, paramIndex: number, inputText: stri
  * On any exceptions, return early outputs
  */
 async function execute(
-  runId: string,
+  codeRunId: string,
   lang: Language,
   targetDir: string,
   code: string,
   params: string[],
-): Promise<CodeRun | CodeRun[]> {
-  const outputsCount = params.length || 1
+): Promise<CodeRun> {
   const srcFile = await saveSourceCode(lang, targetDir, code)
   const binFile = lang.compilationScript
     ? path.resolve(targetDir, `${lang.id}.${lang.binFileExt}`)
@@ -52,9 +53,10 @@ async function execute(
     params.map((text, index) => saveParams(targetDir, index + 1, text)),
   )
 
-  function getExecOptions(paramFile = '') {
+  function getExecOptions(paramFile = ''): ExecOptions {
     return {
       cwd: targetDir,
+      timeout: SANDBOX_TIMEOUT,
       env: {
         ...process.env,
         BASE_DIR: targetDir,
@@ -68,28 +70,24 @@ async function execute(
   // If language is compilable
   if (lang.compilationScript) {
     try {
-      stopwatch.start(runId)
+      stopwatch.start(codeRunId)
 
       await exec(lang.compilationScript, getExecOptions())
 
-      stopwatch.stop(runId)
+      stopwatch.stop(codeRunId)
     } catch (error: any) {
-      const compilationError: CodeRun = {
-        source: code,
-        input: null,
-        output: error.message,
-        comp_time: null,
-        exec_time: null,
-        exit_code: error.code,
+      stopwatch.stop(codeRunId)
+      return {
+        id: codeRunId,
         status: 'COMPILATION_ERROR',
+        comp_time: stopwatch.get(codeRunId) ?? 0,
+        output: error.message,
       }
-
-      return new Array(outputsCount).fill(compilationError)
     }
   }
 
   // Execute the program itself
-  async function runExec(inputFile = '', index = 0): Promise<CodeRun> {
+  async function runExec(inputFile = '', index = 0): Promise<CodeRunOutput> {
     try {
       stopwatch.start(inputFile)
       const execOptions = getExecOptions(inputFile)
@@ -97,31 +95,34 @@ async function execute(
       stopwatch.stop(inputFile)
 
       return {
-        source: code,
+        exit_code: 0,
+        status: 'SUCCESS',
+        exec_time: stopwatch.get(inputFile) ?? 0,
         input: params[index] ?? null,
         output,
-        comp_time: stopwatch.get(runId),
-        exec_time: stopwatch.get(inputFile),
-        exit_code: 0,
-        status: 'DONE',
       }
     } catch (error: any) {
       stopwatch.stop(inputFile)
       return {
-        source: code,
-        input: inputFile,
-        output: error.message,
-        comp_time: stopwatch.get(runId),
-        exec_time: stopwatch.get(inputFile),
         exit_code: error.code,
-        status: 'EXECUTION_ERROR',
+        status: 'RUNTIME_ERROR',
+        exec_time: stopwatch.get(inputFile) ?? 0,
+        input: params[index] ?? null,
+        output: error.message,
       }
     }
   }
 
-  return params.length
-    ? Promise.all(inputFiles.map(runExec))
-    : runExec()
+  const result = params.length
+    ? await Promise.all(inputFiles.map(runExec))
+    : await runExec()
+
+  return {
+    id: codeRunId,
+    status: 'COMPLETED',
+    comp_time: stopwatch.get(codeRunId),
+    result,
+  }
 }
 
 async function executeAndClear(

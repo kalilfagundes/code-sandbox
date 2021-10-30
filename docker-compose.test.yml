@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  app:
+    command: npm run test:local
+    container_name: farmaalg-sandbox-testing
+    environment:
+      PORT: '4445'

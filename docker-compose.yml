@@ -6,12 +6,10 @@ services:
       context: .
       dockerfile: Dockerfile
       target: base
+    command: npm run dev
     container_name: farmaalg-sandbox
-    expose:
-      - '4444'
     ports:
       - '4444:4444'
-    command: npm run dev
     volumes:
       - ./src:/app/sandbox/src
       - ./scripts:/app/sandbox/scripts

@@ -3,5 +3,5 @@ build:
   docker:
     release:
       dockerfile: Dockerfile
-      target: heroku
+      target: production
     web: Dockerfile
