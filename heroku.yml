@@ -1,7 +1,7 @@
-
 build:
   docker:
     release:
       dockerfile: Dockerfile
       target: production
+    # image: sandbox_app -p ${PORT:-4444}
     web: Dockerfile

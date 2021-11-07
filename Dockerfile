@@ -59,4 +59,5 @@ RUN npm install -g pm2
 RUN rm build/ -rf
 RUN npm run build
 
-CMD ["pm2-runtime", "start", "build/index.js"]
+CMD ["docker-compose up", "pm2-runtime", "start", "build/index.js"]
+#CMD ["pm2-runtime", "start", "build/index.js"]
