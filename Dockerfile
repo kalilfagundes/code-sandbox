@@ -13,6 +13,7 @@ RUN apk add --no-cache openjdk11
 RUN apk add --no-cache php7
 RUN apk add --no-cache nodejs
 RUN apk add --no-cache npm
+RUN apk add --no-cache curl
 CMD [ "echo", "Passou02" ]
 # ENV FPC_VERSION="3.2.2"
 # ENV FPC_ARCH="x86_64-linux"
