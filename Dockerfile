@@ -1,7 +1,7 @@
 FROM alpine:latest AS base
 #CMD [ "echo", "Passou01" ]
-ENV NODE_ENV="development"
-ENV PORT="4444"
+ENV NODE_ENV="production"
+ENV PORT="80"
 
 # where the incoming source code will be saved temporarily
 ENV SANDBOX_DIR="/tmp/sandbox"
