@@ -62,5 +62,5 @@ RUN npm run build
 #CMD [ "echo", "Passou04" ]
 #CMD ["docker-compose up", "pm2-runtime", "start", "build/index.js"]
 #RUN tag heroku-docker registry.heroku.com/heroku-docker/web
-CMD ["pm2-runtime", "start", "build/index.js"]
+#CMD ["pm2-runtime", "start", "build/index.js"]
 #CMD [ "echo", "Passou05" ]
