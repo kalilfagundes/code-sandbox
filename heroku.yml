@@ -2,5 +2,3 @@ build:
   docker:
     web: Dockerfile
      # image: sandbox_app -p ${PORT:-4444}
-run:
-  web: pm2-runtime start build/index.js

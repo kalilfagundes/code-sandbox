@@ -1,7 +1,6 @@
 FROM alpine:latest AS base
 #CMD [ "echo", "Passou01" ]
 ENV NODE_ENV="development"
-ENV PORT="80"
 
 # where the incoming source code will be saved temporarily
 ENV SANDBOX_DIR="/tmp/sandbox"
@@ -59,8 +58,10 @@ RUN npm install -g pm2
 
 RUN rm build/ -rf
 RUN npm run build
+
+EXPOSE $PORT
 #CMD [ "echo", "Passou04" ]
 #CMD ["docker-compose up", "pm2-runtime", "start", "build/index.js"]
 #RUN tag heroku-docker registry.heroku.com/heroku-docker/web
-#CMD ["pm2-runtime", "start", "build/index.js"]
+CMD ["pm2-runtime", "start", "build/index.js"]
 #CMD [ "echo", "Passou05" ]
