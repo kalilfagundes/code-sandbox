@@ -1,4 +1,5 @@
 build:
+  config:
+    PORT: 80
   docker:
     web: Dockerfile
-     # image: sandbox_app -p ${PORT:-4444}
