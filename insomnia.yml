@@ -1,0 +1,286 @@
+_type: export
+__export_format: 4
+__export_date: 2021-11-30T23:32:39.451Z
+__export_source: insomnia.desktop.app:v2021.6.0
+resources:
+  - _id: req_516fc4a488df4e36aed3a309afec8883
+    parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
+    modified: 1638314661331
+    created: 1626548036567
+    url: "{{ _.sandbox }}"
+    name: C
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        	"lang": "c",
+        	"code": "#include <stdio.h>\n\nvoid main() {\n  printf(\"Hello, there!\\n\");\n}",
+        	"params": []
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_0f516c366d0b4efaa235452f329471f9
+    authentication: {}
+    metaSortKey: -1626500767171
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_47d7e8f466e4471e8fb3331c5defb07e
+    parentId: wrk_8fe48de2d3b2429eb77bb98402d828ea
+    modified: 1630030889723
+    created: 1626500741606
+    name: sandbox
+    description: ""
+    environment:
+      baseURL: http://localhost:4444
+    environmentPropertyOrder:
+      "&":
+        - baseURL
+    metaSortKey: -1626500741606
+    _type: request_group
+  - _id: wrk_8fe48de2d3b2429eb77bb98402d828ea
+    parentId: null
+    modified: 1626500728240
+    created: 1626500728240
+    name: FarmaAlg
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_2a9da4cc74b74573a1ad3cca6a209ada
+    parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
+    modified: 1638314660365
+    created: 1634355648911
+    url: "{{ _.sandbox }}"
+    name: C with input
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        	"lang": "c",
+        	"code": "#include <stdlib.h>\n#include <stdio.h>\n\nvoid main()\n{\n  int num1, num2;\n  scanf(\"%d %d\", &num1, &num2);\n  printf(\"%d + %d should be %d\\n\", num1, num2, num1 + num2);\n\n  char str[255];\n  scanf(\"%s\", str);\n  printf(\"Hello, %s!\\n\", str);\n}",
+        	"params": [
+        		"5 3\nthere\n", 
+        		"-3 10\nJosnei\n"
+        	]
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_0f516c366d0b4efaa235452f329471f9
+    authentication: {}
+    metaSortKey: -1626500767146
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_e72848bf96304d0f8c84e53bef01e5c3
+    parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
+    modified: 1638314659524
+    created: 1626500767121
+    url: "{{ _.sandbox }}"
+    name: JavaScript
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"lang": "js",
+        	"code": "const x = 'there';\nconsole.log(`Hello, ${x}!`);",
+        	"params": []
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_0f516c366d0b4efaa235452f329471f9
+    authentication: {}
+    metaSortKey: -1626500767121
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_756e4232b20b43ff8b93465edc706b6e
+    parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
+    modified: 1638314657828
+    created: 1634356940306
+    url: "{{ _.sandbox }}"
+    name: JavaScript with input
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        	"lang": "js",
+        	"code": "let inputString = ''\nlet currentLine = 0\n\nprocess.stdin.on('data', (input) => {\n  inputString += input\n})\n\nprocess.stdin.on('end', () => {\n  inputString = inputString\n    .trim()\n    .split('\\n')\n    .map((line) => line.trim())\n\n  main()\n})\n\nfunction readline() {\n  return inputString[currentLine++]\n}\n\nfunction main() {\n  let input = readline()\n  const [num1, num2] = input.split(' ').map(Number)\n  console.log(`${num1} + ${num2} should be ${num1 + num2}`)\n\n  input = readline()\n  console.log(`Hello, ${input}!`)\n}",
+        	"params": [
+        		"5 3\nthere\n", 
+        		"-3 10\nJosnei\n"
+        	]
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_0f516c366d0b4efaa235452f329471f9
+    authentication: {}
+    metaSortKey: -1626478273217.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_c1dbac6644ca4282b6c6eed2cb0d1898
+    parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
+    modified: 1638314656958
+    created: 1626500879300
+    url: "{{ _.sandbox }}"
+    name: PHP
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"lang": "php",
+        	"code": "<?php\n\n$var = 'there';\necho \"Hello, $var!\\n\";",
+        	"params": []
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_0f516c366d0b4efaa235452f329471f9
+    authentication: {}
+    metaSortKey: -1626455779314
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_0b7f035a077e46af956a79da9706f762
+    parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
+    modified: 1638314655114
+    created: 1634356957018
+    url: "{{ _.sandbox }}"
+    name: PHP with input
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        	"lang": "php",
+        	"code": "<?php\n\nfunction main() {\n  $input = readline();\n  [$num1, $num2] = explode(' ', $input);\n  $sum = $num1 + $num2;\n  echo \"$num1 + $num2 should be $sum\\n\";\n\n  $input = readline();\n  echo \"Hello, $input!\\n\";\n}\n\nmain();",
+        	"params": [
+        		"5 3\nthere\n", 
+        		"-3 10\nJosnei\n"
+        	]
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_0f516c366d0b4efaa235452f329471f9
+    authentication: {}
+    metaSortKey: -1626433285410.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_25ed005838a740df8edd4197b030b9a7
+    parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
+    modified: 1638314544607
+    created: 1634436843659
+    url: "{{ _.sandbox }}"
+    name: Execution Timeout
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        	"lang": "c",
+        	"code": "#include <stdlib.h>\n#include <stdio.h>\n\nvoid main()\n{\n  int i = 1;\n  while (1) {\n    i++;\n  }\n}\n",
+        	"params": []
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_0f516c366d0b4efaa235452f329471f9
+    authentication: {}
+    metaSortKey: -1626433285360.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_75adfe99044a6ad1d118e6e3896acabec3380035
+    parentId: wrk_8fe48de2d3b2429eb77bb98402d828ea
+    modified: 1638314298565
+    created: 1626500728581
+    name: Base Environment
+    data:
+      backend: https://farmaalg-back.herokuapp.com
+      sandbox: https://farmaalg-sandbox.herokuapp.com
+      token: Bearer
+        eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXNlbnZvbHZlZG9yQHVmcHIuYnIiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6Imh0dHBzOi8vZmFybWFhbGctYmFjay5oZXJva3VhcHAuY29tL2xvZ2luIiwiaWQiOjQsImV4cCI6MTYzODE1MDQ4NH0.N-XQtv46nuwuK-tGdClbddOsSLD-8IpqpFlG_jT6HSc
+    dataPropertyOrder:
+      "&":
+        - backend
+        - sandbox
+        - token
+    color: null
+    isPrivate: false
+    metaSortKey: 1626500728581
+    _type: environment
+  - _id: jar_75adfe99044a6ad1d118e6e3896acabec3380035
+    parentId: wrk_8fe48de2d3b2429eb77bb98402d828ea
+    modified: 1626500728608
+    created: 1626500728608
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_c1459ed02dba43e080bdf8fd029f0f2c
+    parentId: wrk_8fe48de2d3b2429eb77bb98402d828ea
+    modified: 1626500728250
+    created: 1626500728250
+    fileName: FarmaAlg
+    contents: ""
+    contentType: yaml
+    _type: api_spec
