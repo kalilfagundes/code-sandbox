@@ -1,7 +1,6 @@
 FROM alpine:latest AS base
-
+#CMD [ "echo", "Passou01" ]
 ENV NODE_ENV="development"
-ENV PORT="4444"
 
 # where the incoming source code will be saved temporarily
 ENV SANDBOX_DIR="/tmp/sandbox"
@@ -13,7 +12,8 @@ RUN apk add --no-cache openjdk11
 RUN apk add --no-cache php7
 RUN apk add --no-cache nodejs
 RUN apk add --no-cache npm
-
+RUN apk add --no-cache curl
+#CMD [ "echo", "Passou02" ]
 # ENV FPC_VERSION="3.2.2"
 # ENV FPC_ARCH="x86_64-linux"
 # RUN apk add --no-cache binutils && \
@@ -41,7 +41,7 @@ WORKDIR /app/sandbox
 COPY package.json ./
 RUN npm install
 COPY ./ ./
-
+#CMD [ "echo", "Passou03" ]
 
 
 ################################
@@ -59,4 +59,9 @@ RUN npm install -g pm2
 RUN rm build/ -rf
 RUN npm run build
 
+EXPOSE $PORT
+#CMD [ "echo", "Passou04" ]
+#CMD ["docker-compose up", "pm2-runtime", "start", "build/index.js"]
+#RUN tag heroku-docker registry.heroku.com/heroku-docker/web
 CMD ["pm2-runtime", "start", "build/index.js"]
+#CMD [ "echo", "Passou05" ]
