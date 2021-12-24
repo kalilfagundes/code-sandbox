@@ -1,0 +1,9 @@
+{
+  "id": "python",
+  "name": "Python",
+  "version": "3",
+  "srcFileExt": "py",
+  "binFileExt": "py",
+  "compilationScript": null,
+  "executionScript": "execute.sh"
+}
