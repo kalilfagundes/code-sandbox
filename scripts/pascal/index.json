@@ -1,0 +1,9 @@
+{
+  "id": "pascal",
+  "name": "pascal",
+  "version": "FPC 3.2.2",
+  "srcFileExt": "pas",
+  "binFileExt": "exe",
+  "compilationScript": "compile.sh",
+  "executionScript": "execute.sh"
+}

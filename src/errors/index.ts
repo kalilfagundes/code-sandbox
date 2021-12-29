@@ -1,5 +1,6 @@
 import { ErrorRequestHandler } from 'express'
 import { ValidationError } from 'yup'
+
 import handleValidationError from './validation'
 
 export const errorHandler: ErrorRequestHandler = (

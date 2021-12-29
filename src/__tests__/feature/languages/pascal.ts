@@ -3,22 +3,23 @@ import request from 'supertest'
 
 import server from '../../../server'
 
-describe('C Sandbox Endpoints', () => {
+describe('Pascal Sandbox Endpoints', () => {
   it('Execute successful "hello, world!" (no input)', async () => {
     const app = await request(server)
     const response = await app.post('/').send({
-      lang: 'c',
+      lang: 'pascal',
       code: `
-        #include <stdio.h>
+        program farma_alg;
 
-        int main()
-        {
-          char* greeting = "hello";
-          char* name = "world";
-          printf("%s, %s!\\n", greeting, name);
+        var
+          greeting : string;
+          text     : string;
 
-          return 0;
-        }
+        begin
+          greeting := 'hello';
+          text := 'world';
+          writeln(greeting, ', ', text, '!');
+        end.
       `,
     })
 
@@ -35,17 +36,13 @@ describe('C Sandbox Endpoints', () => {
   it('Failed to compile (syntax error)', async () => {
     const app = await request(server)
     const response = await app.post('/').send({
-      lang: 'c',
+      lang: 'pascal',
       code: `
-        #include <stdio.h>
+        program farma_alg;
 
-        int main()
-        {
-          printf("hello, world!\\n");
-
-          // missing semicolon
-          return 0
-        }
+        begin
+          writeln('hello, world!');
+        end { missing "." }
       `,
     })
 
@@ -58,17 +55,22 @@ describe('C Sandbox Endpoints', () => {
   it('Failed to execute (division by zero)', async () => {
     const app = await request(server)
     const response = await app.post('/').send({
-      lang: 'c',
+      lang: 'pascal',
       code: `
-        #include <stdio.h>
+        program farma_alg;
 
-        int main()
-        {
-          // dividing by zero
-          float v = 5 / 0;
+        var
+          num1   : integer;
+          num2   : integer;
+          result : integer;
 
-          return 0;
-        }
+        begin
+          num1 := 5;
+          num2 := 0;
+          { dividing by zero }
+          result := num1 div num2;
+          writeln(result);
+        end.
       `,
     })
 
@@ -85,26 +87,28 @@ describe('C Sandbox Endpoints', () => {
   it('Execute successful "hello, world!" (with input)', async () => {
     const app = await request(server)
     const response = await app.post('/').send({
-      lang: 'c',
+      lang: 'pascal',
       params: [
         '5 3\nworld',
         '-7 10\nJosnei',
       ],
       code: `
-        #include <stdio.h>
+        program farma_alg;
 
-        int main()
-        {
-          int num1, num2;
-          scanf("%d %d", &num1, &num2);
-          printf("%d + %d should be %d\\n", num1, num2, num1 + num2);
+        var
+          num1 : integer;
+          num2 : integer;
+          sum  : integer;
+          text : string;
 
-          char str[255];
-          scanf("%s", str);
-          printf("hello, %s!\\n", str);
+        begin
+          readln(num1, num2);
+          sum := num1 + num2;
+          writeln(num1, ' + ', num2, ' should be ', sum);
 
-          return 0;
-        }
+          readln(text);
+          writeln('hello, ', text, '!');
+        end.
       `,
     })
 

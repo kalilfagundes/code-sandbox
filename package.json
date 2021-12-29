@@ -19,7 +19,7 @@
     "docker:run": "docker-compose up",
     "docker:prod:build": "docker build . --tag farmaalg-sandbox --target production",
     "docker:prod:run": "docker run farmaalg-sandbox --detach --env PORT=50505 -p 4444:50505",
-    "lint": "eslint src/**/* --fix"
+    "lint": "eslint src/**/*.ts --fix"
   },
   "dependencies": {
     "cors": "^2.8.5",
