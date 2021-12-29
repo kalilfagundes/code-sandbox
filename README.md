@@ -1,8 +1,8 @@
-# FarmaAlg 2.0 (sandbox)
+# Farma-Alg 3.0 (sandbox)
 
-FarmaALg é um sistema para fins educacionais de lógica de programação e algorítmos. Seu propósito inicial é dar aos estudantes a possibilidade de executar códigos online com o feedback do resultado da execução de seu programa e, ao mesmo tempo, proporcionar ao professor um ferramental analítico para acompanhamento do aprendizado de suas turmas. A primeira versão deste software está em uso por alguns docentes do curso de Tecnologia em Análise e Desenvolvimento de Sistemas da Universidade Federal do Paraná (UFPR).
+Farma-Alg é um sistema para fins educacionais de lógica de programação e algorítmos. Seu propósito inicial é dar aos estudantes a possibilidade de executar códigos online com o feedback do resultado da execução de seu programa e, ao mesmo tempo, proporcionar ao professor um ferramental analítico para acompanhamento do aprendizado de suas turmas. A primeira versão deste software está em uso por alguns docentes do curso de Tecnologia em Análise e Desenvolvimento de Sistemas da Universidade Federal do Paraná (UFPR).
 
-O propósito deste projeto é desenvolver uma evolução do FarmaAlg original, mantendo aspectos positivos e mitigando aspectos negativos da versão já em uso, levando em conta práticas atuais de mercado para o desenvolvimento de softwares escaláveis e de fácil manutenção. E, neste momento, o projeto está sendo desenvolvido como Trabalho de Conclusão de Curso e com o escopo um pouco reduzido em comparação ao projeto inicial.
+O propósito deste projeto é desenvolver uma evolução do Farma-Alg original, mantendo aspectos positivos e mitigando aspectos negativos da versão já em uso, levando em conta práticas atuais de mercado para o desenvolvimento de softwares escaláveis e de fácil manutenção. E, neste momento, o projeto está sendo desenvolvido como Trabalho de Conclusão de Curso e com o escopo um pouco reduzido em comparação ao projeto inicial.
 
 Ver protótipo em construção [nesta página](https://farmaalg.vercel.app/).
 
@@ -31,7 +31,7 @@ $ docker-compose up -f docker-compose.yml -f docker-compose.prod.yml -d
 
 ## Linguagens SUportadas
 
-Até o momento, a aplicação suporta códigos-fonte nas linguagens **C**, **JavaScrippt (node)** e **PHP (v7.4)**. Para incrementar o suporte a novas lingugens, é preciso adicionar um arquivo JSON com os metadados e arquivos *shell script* (.sh) à pasta `/scripts/`.
+Até o momento, a aplicação suporta códigos-fonte nas linguagens **C**, **JavaScrippt (node)**, **Pascal (FPC)**, **PHP (v7.4)** e **Python (v3.8)**. Para incrementar o suporte a novas lingugens, é preciso adicionar um arquivo JSON com os metadados e arquivos *shell script* (.sh) à pasta `/scripts`.
 
 ## Formato de Requisição e da Resposta
 
@@ -39,7 +39,7 @@ Para fazer uso do serviço, é necessário enviar uma requisição HTTP do tipo 
 
 ```ts
 interface RequestBody {
-  lang: 'c' | 'js' | 'php'
+  lang: 'c' | 'js' | 'pascal' | 'php' | 'python'
   code: string
   params?: string[]
 }
