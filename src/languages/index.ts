@@ -1,7 +1,8 @@
 import path from 'path'
+
+import { searchFiles } from '../utils/fs'
 import { execute } from './runner'
 import { Language, Runtime } from './types'
-import { searchFiles } from '../utils/fs'
 
 const META_FILES_PATTERN = /.\.json$/i
 const SCRIPTS_DIR = `${__dirname}/../../scripts`

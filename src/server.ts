@@ -1,8 +1,9 @@
 import 'express-async-errors'
-import express from 'express'
 import cors from 'cors'
-import routes from './routes'
+import express from 'express'
+
 import { errorHandler } from './errors'
+import routes from './routes'
 
 // Configure application server
 const server = express()

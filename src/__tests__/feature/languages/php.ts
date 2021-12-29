@@ -1,5 +1,6 @@
 /* eslint-disable no-magic-numbers */
 import request from 'supertest'
+
 import server from '../../../server'
 
 describe('PHP Sandbox Endpoints', () => {

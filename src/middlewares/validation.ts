@@ -1,6 +1,7 @@
 /* eslint-disable no-template-curly-in-string */
 import { RequestHandler } from 'express'
 import * as Yup from 'yup'
+
 import languages from '../languages'
 
 // Expected incoming request JSON body
