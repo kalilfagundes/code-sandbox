@@ -1,11 +1,11 @@
 _type: export
 __export_format: 4
-__export_date: 2021-11-30T23:32:39.451Z
-__export_source: insomnia.desktop.app:v2021.6.0
+__export_date: 2022-01-02T21:54:58.867Z
+__export_source: insomnia.desktop.app:v2021.7.2
 resources:
   - _id: req_516fc4a488df4e36aed3a309afec8883
     parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
-    modified: 1638314661331
+    modified: 1641159653234
     created: 1626548036567
     url: "{{ _.sandbox }}"
     name: C
@@ -16,7 +16,7 @@ resources:
       text: >-
         {
         	"lang": "c",
-        	"code": "#include <stdio.h>\n\nvoid main() {\n  printf(\"Hello, there!\\n\");\n}",
+        	"code": "#include <stdio.h>\n\nvoid main() {\n  printf(\"hello, there!\\n\");\n}",
         	"params": []
         }
     parameters: []
@@ -57,7 +57,7 @@ resources:
     _type: workspace
   - _id: req_2a9da4cc74b74573a1ad3cca6a209ada
     parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
-    modified: 1638314660365
+    modified: 1641159685220
     created: 1634355648911
     url: "{{ _.sandbox }}"
     name: C with input
@@ -68,7 +68,7 @@ resources:
       text: >-
         {
         	"lang": "c",
-        	"code": "#include <stdlib.h>\n#include <stdio.h>\n\nvoid main()\n{\n  int num1, num2;\n  scanf(\"%d %d\", &num1, &num2);\n  printf(\"%d + %d should be %d\\n\", num1, num2, num1 + num2);\n\n  char str[255];\n  scanf(\"%s\", str);\n  printf(\"Hello, %s!\\n\", str);\n}",
+        	"code": "#include <stdlib.h>\n#include <stdio.h>\n\nvoid main()\n{\n  int num1, num2;\n  scanf(\"%d %d\", &num1, &num2);\n  printf(\"%d + %d should be %d\\n\", num1, num2, num1 + num2);\n\n  char str[255];\n  scanf(\"%s\", str);\n  printf(\"hello, %s!\\n\", str);\n}",
         	"params": [
         		"5 3\nthere\n", 
         		"-3 10\nJosnei\n"
@@ -89,9 +89,74 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: req_10388820328e49f6adc5b0ff60f0004c
+    parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
+    modified: 1641160040081
+    created: 1641159853748
+    url: "{{ _.sandbox }}"
+    name: Java
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        	"lang": "java",
+        	"code": "class FarmaAlg {\n  public static void main(String[] args) {\n    String greeting = \"hello\";\n    String name = \"there\";\n    System.out.println(greeting + \", \" + name + \"!\");\n  }\n}",
+        	"params": []
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_0f516c366d0b4efaa235452f329471f9
+    authentication: {}
+    metaSortKey: -1626500767133.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a6c90f6805e34785aa5a4a03250cfa86
+    parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
+    modified: 1641160342350
+    created: 1641159867378
+    url: "{{ _.sandbox }}"
+    name: Java with input
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        	"lang": "java",
+        	"code": "import java.util.Scanner;\n\nclass FarmaAlg {\n  public static void main(String[] args) throws Exception {\n    try (Scanner scanner = new Scanner(System.in)) {\n      int num1 = scanner.nextInt();\n      int num2 = scanner.nextInt();\n      int sum = num1 + num2;\n      System.out.println(num1 + \" + \" + num2 + \" should be \" + sum);\n\n      String name = scanner.next();\n      System.out.println(\"hello, \" + name + \"!\");\n    } catch (Exception ex) {\n      throw ex;\n    }\n  }\n}",
+        	"params": [
+        		"5 3\nthere\n", 
+        		"-3 10\nJosnei\n"
+        	]
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_0f516c366d0b4efaa235452f329471f9
+    authentication: {}
+    metaSortKey: -1626500767127.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_e72848bf96304d0f8c84e53bef01e5c3
     parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
-    modified: 1638314659524
+    modified: 1641159700882
     created: 1626500767121
     url: "{{ _.sandbox }}"
     name: JavaScript
@@ -102,7 +167,7 @@ resources:
       text: |-
         {
         	"lang": "js",
-        	"code": "const x = 'there';\nconsole.log(`Hello, ${x}!`);",
+        	"code": "const x = 'there';\nconsole.log(`hello, ${x}!`);",
         	"params": []
         }
     parameters: []
@@ -122,7 +187,7 @@ resources:
     _type: request
   - _id: req_756e4232b20b43ff8b93465edc706b6e
     parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
-    modified: 1638314657828
+    modified: 1641159712766
     created: 1634356940306
     url: "{{ _.sandbox }}"
     name: JavaScript with input
@@ -133,7 +198,7 @@ resources:
       text: >-
         {
         	"lang": "js",
-        	"code": "let inputString = ''\nlet currentLine = 0\n\nprocess.stdin.on('data', (input) => {\n  inputString += input\n})\n\nprocess.stdin.on('end', () => {\n  inputString = inputString\n    .trim()\n    .split('\\n')\n    .map((line) => line.trim())\n\n  main()\n})\n\nfunction readline() {\n  return inputString[currentLine++]\n}\n\nfunction main() {\n  let input = readline()\n  const [num1, num2] = input.split(' ').map(Number)\n  console.log(`${num1} + ${num2} should be ${num1 + num2}`)\n\n  input = readline()\n  console.log(`Hello, ${input}!`)\n}",
+        	"code": "let inputString = ''\nlet currentLine = 0\n\nprocess.stdin.on('data', (input) => {\n  inputString += input\n})\n\nprocess.stdin.on('end', () => {\n  inputString = inputString\n    .trim()\n    .split('\\n')\n    .map((line) => line.trim())\n\n  main()\n})\n\nfunction readline() {\n  return inputString[currentLine++]\n}\n\nfunction main() {\n  let input = readline()\n  const [num1, num2] = input.split(' ').map(Number)\n  console.log(`${num1} + ${num2} should be ${num1 + num2}`)\n\n  input = readline()\n  console.log(`hello, ${input}!`)\n}",
         	"params": [
         		"5 3\nthere\n", 
         		"-3 10\nJosnei\n"
@@ -154,9 +219,74 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: req_31f190c07e2640339dc9284765036cae
+    parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
+    modified: 1641159743722
+    created: 1641152937987
+    url: "{{ _.sandbox }}"
+    name: Pascal
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        	"lang": "pascal",
+        	"code": "program farma_alg;\n\nvar\n  greeting : string;\n  text     : string;\n\nbegin\n  greeting := 'hello';\n  text := 'there';\n  writeln(greeting, ', ', text, '!');\nend.",
+        	"params": []
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_0f516c366d0b4efaa235452f329471f9
+    authentication: {}
+    metaSortKey: -1626467026265.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_9e080af1c3dd4635961e9956ac1e5f46
+    parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
+    modified: 1641159771414
+    created: 1641159498739
+    url: "{{ _.sandbox }}"
+    name: Pascal with input
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        	"lang": "pascal",
+        	"code": "program farma_alg;\n\nvar\n  num1 : integer;\n  num2 : integer;\n  sum  : integer;\n  text : string;\n\nbegin\n  readln(num1, num2);\n  sum := num1 + num2;\n  writeln(num1, ' + ', num2, ' should be ', sum);\n\n  readln(text);\n  writeln('hello, ', text, '!');\nend.",
+        	"params": [
+        		"5 3\nthere\n", 
+        		"-3 10\nJosnei\n"
+        	]
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_0f516c366d0b4efaa235452f329471f9
+    authentication: {}
+    metaSortKey: -1626461402789.875
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_c1dbac6644ca4282b6c6eed2cb0d1898
     parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
-    modified: 1638314656958
+    modified: 1641159791047
     created: 1626500879300
     url: "{{ _.sandbox }}"
     name: PHP
@@ -167,7 +297,7 @@ resources:
       text: |-
         {
         	"lang": "php",
-        	"code": "<?php\n\n$var = 'there';\necho \"Hello, $var!\\n\";",
+        	"code": "<?php\n\n$var = 'there';\necho \"hello, $var!\\n\";",
         	"params": []
         }
     parameters: []
@@ -187,7 +317,7 @@ resources:
     _type: request
   - _id: req_0b7f035a077e46af956a79da9706f762
     parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
-    modified: 1638314655114
+    modified: 1641159812303
     created: 1634356957018
     url: "{{ _.sandbox }}"
     name: PHP with input
@@ -198,7 +328,7 @@ resources:
       text: >-
         {
         	"lang": "php",
-        	"code": "<?php\n\nfunction main() {\n  $input = readline();\n  [$num1, $num2] = explode(' ', $input);\n  $sum = $num1 + $num2;\n  echo \"$num1 + $num2 should be $sum\\n\";\n\n  $input = readline();\n  echo \"Hello, $input!\\n\";\n}\n\nmain();",
+        	"code": "<?php\n\nfunction main() {\n  $input = readline();\n  [$num1, $num2] = explode(' ', $input);\n  $sum = $num1 + $num2;\n  echo \"$num1 + $num2 should be $sum\\n\";\n\n  $input = readline();\n  echo \"hello, $input!\\n\";\n}\n\nmain();",
         	"params": [
         		"5 3\nthere\n", 
         		"-3 10\nJosnei\n"
@@ -219,9 +349,74 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: req_ec4d8605104a4f02af28053871a6feaf
+    parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
+    modified: 1641159822838
+    created: 1640366571784
+    url: "{{ _.sandbox }}"
+    name: Python
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"lang": "python",
+        	"code": "var = 'there';\nprint('hello, {}!'.format(var))",
+        	"params": []
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_0f516c366d0b4efaa235452f329471f9
+    authentication: {}
+    metaSortKey: -1626433285385.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_92c335ba6300423694d8cf1ffe177fb5
+    parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
+    modified: 1641159829041
+    created: 1640366592416
+    url: "{{ _.sandbox }}"
+    name: Python with input
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        	"lang": "python",
+        	"code": "def main():\n  num1, num2 = input().split()\n  sum = int(num1) + int(num2)\n  print('{} + {} should be {}'.format(num1, num2, sum))\n\n  text = input()\n  print('hello, {}!'.format(text))\n\nmain()",
+        	"params": [
+        		"5 3\nthere\n", 
+        		"-3 10\nJosnei\n"
+        	]
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_0f516c366d0b4efaa235452f329471f9
+    authentication: {}
+    metaSortKey: -1626433285373
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_25ed005838a740df8edd4197b030b9a7
     parentId: fld_47d7e8f466e4471e8fb3331c5defb07e
-    modified: 1638314544607
+    modified: 1638498080482
     created: 1634436843659
     url: "{{ _.sandbox }}"
     name: Execution Timeout
@@ -252,14 +447,14 @@ resources:
     _type: request
   - _id: env_75adfe99044a6ad1d118e6e3896acabec3380035
     parentId: wrk_8fe48de2d3b2429eb77bb98402d828ea
-    modified: 1638314298565
+    modified: 1640366258895
     created: 1626500728581
     name: Base Environment
     data:
       backend: https://farmaalg-back.herokuapp.com
       sandbox: https://farmaalg-sandbox.herokuapp.com
       token: Bearer
-        eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZXNlbnZvbHZlZG9yQHVmcHIuYnIiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6Imh0dHBzOi8vZmFybWFhbGctYmFjay5oZXJva3VhcHAuY29tL2xvZ2luIiwiaWQiOjQsImV4cCI6MTYzODE1MDQ4NH0.N-XQtv46nuwuK-tGdClbddOsSLD-8IpqpFlG_jT6HSc
+        eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBlbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6Imh0dHBzOi8vZmFybWFhbGctYmFjay5oZXJva3VhcHAuY29tL2xvZ2luIiwiaWQiOjIsImV4cCI6MTY0MDA5MjQxNX0.Jccg5hAgeiTL1ACZ-WC8ervIMu7kK5RXp4fa4AMvdGo
     dataPropertyOrder:
       "&":
         - backend
@@ -284,3 +479,17 @@ resources:
     contents: ""
     contentType: yaml
     _type: api_spec
+  - _id: env_7cb5ed2f13984c63b573cd6f4cc1b052
+    parentId: env_75adfe99044a6ad1d118e6e3896acabec3380035
+    modified: 1640366286322
+    created: 1640366148321
+    name: Local
+    data:
+      sandbox: http://localhost:4444
+    dataPropertyOrder:
+      "&":
+        - sandbox
+    color: null
+    isPrivate: false
+    metaSortKey: 0
+    _type: environment
