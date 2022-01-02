@@ -31,7 +31,7 @@ $ docker-compose up -f docker-compose.yml -f docker-compose.prod.yml -d
 
 ## Linguagens SUportadas
 
-Até o momento, a aplicação suporta códigos-fonte nas linguagens **C**, **JavaScrippt (node)**, **Pascal (FPC)**, **PHP (v7.4)** e **Python (v3.8)**. Para incrementar o suporte a novas lingugens, é preciso adicionar um arquivo JSON com os metadados e arquivos *shell script* (.sh) à pasta `/scripts`.
+Até o momento, a aplicação suporta códigos-fonte nas linguagens **C**, **Java (v11)**, **JavaScrippt (node)**, **Pascal (FPC)**, **PHP (v7.4)** e **Python (v3.8)**. Para incrementar o suporte a novas lingugens, é preciso adicionar um arquivo JSON com os metadados e arquivos *shell script* (.sh) à pasta `/scripts`.
 
 ## Formato de Requisição e da Resposta
 
@@ -39,7 +39,7 @@ Para fazer uso do serviço, é necessário enviar uma requisição HTTP do tipo 
 
 ```ts
 interface RequestBody {
-  lang: 'c' | 'js' | 'pascal' | 'php' | 'python'
+  lang: 'c' | 'java' | 'js' | 'pascal' | 'php' | 'python'
   code: string
   params?: string[]
 }
