@@ -1,0 +1,9 @@
+{
+  "id": "java",
+  "name": "Java",
+  "version": "11",
+  "srcFileExt": "java",
+  "binFileExt": "class",
+  "compilationScript": "compile.sh",
+  "executionScript": "execute.sh"
+}
