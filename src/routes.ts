@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
 import languages, { createRuntime } from './languages'
-import { RequestBody, validate } from './middlewares'
+import { authenticate, RequestBody, validate } from './middlewares'
 
 
 // Configure routing object
@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Run service of code compilation and execution
-router.post('/', validate(), async (request, response) => {
+router.post('/', authenticate(), validate(), async (request, response) => {
   const { lang, code, params = [] } = request.body as RequestBody
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const language = languages.get(lang)! // validation ensures language is not null

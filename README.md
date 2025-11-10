@@ -8,7 +8,43 @@ Ver protótipo em construção [nesta página](https://farmaalg.vercel.app/).
 
 Este repositório se concentra no módulo sandbox, serviço dedicado à execução de códigos de terceiros em um ambiente virtualizado (contêiner [Docker](https://www.docker.com/)), executando um servidor em [Node.js](https://nodejs.org/) e interface de comunicação HTTP (API REST).
 
+## Documentação da API
+
+Para informações detalhadas sobre como usar a API, incluindo autenticação, exemplos práticos de todas as linguagens suportadas e uso avançado do parâmetro `params`, consulte o **[Guia de Uso da API](API_USAGE.md)**.
+
+## Autenticação
+
+A API utiliza autenticação via **API Key** no header `Authorization` usando o esquema Bearer:
+
+```
+Authorization: Bearer sua_api_key_aqui
+```
+
+Para configurar a API Key, adicione a variável `API_KEY` no arquivo `.env`:
+
+```env
+API_KEY="sua_api_key_secreta_aqui"
+```
+
+**Nota:** Se a variável `API_KEY` não estiver configurada, a autenticação será opcional e a API aceitará requisições sem o header Authorization.
+
 ## Executar Projeto
+
+### Configuração Inicial
+
+1. Copie o arquivo `.env.example` para `.env` e configure as variáveis de ambiente:
+
+```bash
+$ cp .env.example .env
+```
+
+2. Edite o arquivo `.env` e configure a API Key (opcional):
+
+```env
+API_KEY="sua_api_key_secreta_aqui"
+```
+
+### Execução Local
 
 Para executar a aplicação localmente, execute os seguintes comandos `npm` (requer SO **Linux** e **Node** instalado):
 
@@ -19,6 +55,8 @@ $ npm run build   # transpila código TypeScript para produção
 $ npm start       # inicia aplicação de produção
 ```
 
+### Execução com Docker
+
 Para executar a aplicação diretamente no container **Docker** (recomendado), execute os seguintes comandos:
 
 ```bash
@@ -28,6 +66,8 @@ $ docker-compose up      # inicia o container em modo de desenvolvimento
   # iniciar o serviço em modo de produção
 $ docker-compose up -f docker-compose.yml -f docker-compose.prod.yml -d
 ```
+
+**Nota:** O Docker Compose automaticamente carrega as variáveis do arquivo `.env`, incluindo a `API_KEY`.
 
 ## Linguagens SUportadas
 
