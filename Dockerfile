@@ -77,5 +77,5 @@ RUN npm run build
 RUN find scripts -type f -name "*.sh" -exec dos2unix {} \; && \
     chmod +x scripts/*/*.sh
 
-EXPOSE $PORT
+EXPOSE 4444
 CMD ["pm2-runtime", "start", "build/index.js"]
