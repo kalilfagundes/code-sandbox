@@ -16,7 +16,7 @@ RUN apk add --no-cache python3 py3-pip
 
 ENV FPC_VERSION="3.2.2"
 ENV FPC_ARCH="x86_64-linux"
-RUN apk add --no-cache binutils && \
+RUN apk add --no-cache binutils wget && \
     cd /tmp && \
     wget "ftp://ftp.hu.freepascal.org/pub/fpc/dist/${FPC_VERSION}/${FPC_ARCH}/fpc-${FPC_VERSION}.${FPC_ARCH}.tar" -O fpc.tar && \
     tar xf "fpc.tar" && \
