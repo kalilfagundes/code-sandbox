@@ -21,9 +21,12 @@ RUN apk add --no-cache \
     wget \
     dos2unix
 
+
 # Instalar bibliotecas Python
 RUN pip3 install --no-cache-dir --break-system-packages \
     requests \
+    pandas \
+    numpy
 
 # Install Free Pascal (FPC)
 ENV FPC_VERSION="3.2.2"
