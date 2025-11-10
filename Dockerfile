@@ -10,7 +10,7 @@ RUN apk add --no-cache build-base
 RUN apk add --no-cache bash
 RUN apk add --no-cache curl
 RUN apk add --no-cache openjdk11
-RUN apk add --no-cache php7
+RUN apk add --no-cache php83
 RUN apk add --no-cache nodejs npm
 RUN apk add --no-cache python3 py3-pip
 
