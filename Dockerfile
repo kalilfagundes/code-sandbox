@@ -50,7 +50,7 @@ COPY package.json ./
 RUN npm install
 COPY ./ ./
 
-
+RUN chmod +x scripts/*/*.sh
 
 ################################
 # To be run only in production #
