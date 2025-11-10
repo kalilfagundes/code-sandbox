@@ -5,20 +5,29 @@ ENV NODE_ENV="development"
 # where the incoming source code will be saved temporarily
 ENV SANDBOX_DIR="/tmp/sandbox"
 
-RUN apk add --no-cache bash bash-doc bash-completion
-RUN apk add --no-cache build-base
-RUN apk add --no-cache bash
-RUN apk add --no-cache curl
-RUN apk add --no-cache openjdk11
-RUN apk add --no-cache php83
-RUN apk add --no-cache nodejs npm
-RUN apk add --no-cache python3 py3-pip
+# Install all base packages and dependencies in a single layer
+# This is more efficient and includes the 'wget' needed for the next step
+RUN apk add --no-cache \
+    bash \
+    bash-doc \
+    bash-completion \
+    build-base \
+    curl \
+    openjdk11 \
+    php83 \
+    nodejs \
+    npm \
+    python3 \
+    py3-pip \
+    binutils \
+    wget
 
+# Install Free Pascal (FPC)
 ENV FPC_VERSION="3.2.2"
 ENV FPC_ARCH="x86_64-linux"
-RUN apk add --no-cache binutils wget && \
-    cd /tmp && \
-    wget "ftp://ftp.hu.freepascal.org/pub/fpc/dist/${FPC_VERSION}/${FPC_ARCH}/fpc-${FPC_VERSION}.${FPC_ARCH}.tar" -O fpc.tar && \
+RUN cd /tmp && \
+    # Use the reliable SourceForge HTTPS mirror instead of the failing FTP link
+    wget "https://sourceforge.net/projects/freepascal/files/Linux/${FPC_VERSION}/fpc-${FPC_VERSION}.${FPC_ARCH}.tar/download" -O fpc.tar && \
     tar xf "fpc.tar" && \
     cd "fpc-${FPC_VERSION}.${FPC_ARCH}" && \
     rm demo* doc* && \
