@@ -1,7 +1,5 @@
 FROM alpine:latest AS base
-
 ENV NODE_ENV="development"
-
 # where the incoming source code will be saved temporarily
 ENV SANDBOX_DIR="/tmp/sandbox"
 
@@ -20,7 +18,8 @@ RUN apk add --no-cache \
     python3 \
     py3-pip \
     binutils \
-    wget
+    wget \
+    dos2unix
 
 # Install Free Pascal (FPC)
 ENV FPC_VERSION="3.2.2"
@@ -48,25 +47,28 @@ WORKDIR /app/sandbox
 
 COPY package.json ./
 RUN npm install
+
 COPY ./ ./
 
-RUN chmod +x scripts/*/*.sh
+# Converter line endings E dar permissão
+RUN find scripts -type f -name "*.sh" -exec dos2unix {} \; && \
+    chmod +x scripts/*/*.sh
 
 ################################
 # To be run only in production #
 ################################
 FROM base AS production
-
 ENV NODE_ENV="production"
-
 # how many milliseconds maximum the server will spend in a shell execution
 ENV SANDBOX_TIMEOUT=10000
 
 RUN npm install -g pm2
-
 RUN rm build/ -rf
 RUN npm run build
 
-EXPOSE $PORT
+# Garantir line endings corretos no production também
+RUN find scripts -type f -name "*.sh" -exec dos2unix {} \; && \
+    chmod +x scripts/*/*.sh
 
+EXPOSE $PORT
 CMD ["pm2-runtime", "start", "build/index.js"]
