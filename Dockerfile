@@ -22,7 +22,7 @@ RUN apk add --no-cache \
     dos2unix
 
 # Instalar bibliotecas Python
-RUN pip3 install --no-cache-dir \
+RUN pip3 install --no-cache-dir --break-system-packages \
     requests \
 
 # Install Free Pascal (FPC)
